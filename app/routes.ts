@@ -3,6 +3,7 @@ import {
   index,
   route,
   layout,
+  prefix,
 } from "@react-router/dev/routes";
 
 export default [
@@ -11,4 +12,5 @@ export default [
     route("popular", "routes/popular.tsx"),
     route("search", "routes/search.tsx"),
   ]),
+  ...prefix("v1", [...prefix("systems", [route("ping", "routes/ping.tsx")])]),
 ] satisfies RouteConfig;
