@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <div className="sm:ml-64">
       <h1>記事一覧です</h1>
-      <ul className="list-disc list-inside">
+      <ul className="list-disc list-outside">
         {posts.map((post: Post) => (
           <li key={post.id}>{`${post.id}: ${post.title}`}</li>
         ))}
