@@ -17,7 +17,7 @@ export default function Home() {
   const { posts } = useLoaderData<typeof loader>();
 
   return (
-    <div className="sm:ml-64">
+    <div className="sm:ml-56">
       <h1>記事一覧です</h1>
       <ul className="list-disc list-outside">
         {posts.map((post: Post) => (

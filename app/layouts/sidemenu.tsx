@@ -10,7 +10,7 @@ export default function Sidemenu() {
   return (
     <div>
       <aside
-        className="fixed top-0 left-0 z-40 w-64 h-screen shadow-lg"
+        className="fixed top-0 left-0 z-40 w-48 h-screen shadow-lg"
         aria-label="Sidebar"
       >
         <nav>
