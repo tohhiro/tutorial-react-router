@@ -1,27 +1,19 @@
 import { useLoaderData } from "react-router";
-
-interface Post {
-  id: number;
-  title: string;
-}
+import { type ArticleData, useFetcher } from "~/hooks/useFetcher";
 
 export async function loader() {
-  const res = await fetch(
-    "https://jsonplaceholder.typicode.com/posts?_limit=5"
-  );
-  const posts: Post[] = await res.json();
-  return { posts };
+  return await useFetcher();
 }
 
 export default function Home() {
-  const { posts } = useLoaderData<typeof loader>();
+  const { articles } = useLoaderData<typeof loader>();
 
   return (
     <div className="sm:ml-56">
       <h1>記事一覧です</h1>
       <ul className="list-disc list-outside">
-        {posts.map((post: Post) => (
-          <li key={post.id}>{`${post.id}: ${post.title}`}</li>
+        {articles.map((article: ArticleData) => (
+          <li key={article.id}>{`${article.id}: ${article.title}`}</li>
         ))}
       </ul>
     </div>
