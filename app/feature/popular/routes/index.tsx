@@ -1,15 +1,8 @@
 import { useLoaderData } from "react-router";
-
-type Post = {
-  id: number;
-  title: string;
-};
+import { useFetchPopular } from "../hooks/useFetchPopular";
 
 export async function loader() {
-  const res = await fetch(
-    "https://jsonplaceholder.typicode.com/posts?id=2&id=10"
-  );
-  const posts: Post[] = await res.json();
+  const { posts } = await useFetchPopular();
   return { posts };
 }
 
@@ -20,7 +13,7 @@ export default function Popular() {
     <div className="sm:ml-56">
       <h1>人気記事</h1>
       <ul className="list-disc list-outside">
-        {posts.map((post: Post) => (
+        {posts.map((post) => (
           <li key={post.id}>{`${post.id}: ${post.title}`}</li>
         ))}
       </ul>

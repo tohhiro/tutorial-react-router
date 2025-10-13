@@ -1,9 +1,4 @@
-export type ArticleData = {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
-};
+import { type ArticleData } from "../../types/fetch.type";
 
 export const useFetcher = async () => {
   const res = await fetch("https://jsonplaceholder.typicode.com/posts");
