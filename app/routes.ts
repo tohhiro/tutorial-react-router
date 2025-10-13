@@ -8,9 +8,11 @@ import {
 
 export default [
   layout("layouts/sidemenu.tsx", [
-    index("routes/home.tsx"),
-    route("popular", "routes/popular.tsx"),
-    route("search", "routes/search.tsx"),
+    index("feature/home/routes/index.tsx"),
+    route("popular", "feature/popular/routes/index.tsx"),
+    route("search", "feature/search/routes/index.tsx"),
   ]),
-  ...prefix("v1", [...prefix("systems", [route("ping", "routes/ping.tsx")])]),
+  ...prefix("v1", [
+    ...prefix("systems", [route("ping", "feature/ping/routes/index.tsx")]),
+  ]),
 ] satisfies RouteConfig;

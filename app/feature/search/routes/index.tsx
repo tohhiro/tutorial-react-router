@@ -1,6 +1,7 @@
 import { useLoaderData } from "react-router";
 import { useState } from "react";
 import { useFetcher, type ArticleData } from "~/hooks/useFetcher";
+import { SearchButton } from "../components/SearchButton";
 
 export async function loader() {
   const { articles } = await useFetcher();
