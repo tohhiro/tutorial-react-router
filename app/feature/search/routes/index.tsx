@@ -1,6 +1,7 @@
 import { useLoaderData } from "react-router";
 import { useState } from "react";
-import { useFetcher, type ArticleData } from "~/hooks/useFetcher";
+import { useFetcher } from "~/feature/search/hooks/useFetcher";
+import { type ArticleData } from "../../types/fetch.type";
 import { SearchButton } from "../components/SearchButton";
 import { ClearButton } from "../components/ClearButton";
 import { InputKeyword } from "../components/InputKeyword";

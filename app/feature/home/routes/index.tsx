@@ -1,8 +1,8 @@
 import { useLoaderData } from "react-router";
-import { type ArticleData, useFetcher } from "~/hooks/useFetcher";
+import { useFetchLimit } from "../hooks/useFetcherLimit";
 
 export async function loader() {
-  return await useFetcher();
+  return await useFetchLimit();
 }
 
 export default function Home() {
@@ -12,7 +12,7 @@ export default function Home() {
     <div className="sm:ml-56">
       <h1>記事一覧です</h1>
       <ul className="list-disc list-outside">
-        {articles.map((article: ArticleData) => (
+        {articles.map((article) => (
           <li key={article.id}>{`${article.id}: ${article.title}`}</li>
         ))}
       </ul>
