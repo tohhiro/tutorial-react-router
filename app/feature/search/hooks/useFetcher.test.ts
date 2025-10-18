@@ -1,7 +1,6 @@
 import { useFetcher } from "./useFetcher";
 import { type ArticleData } from "../../types/fetch.type";
 
-// fetchをモック化
 global.fetch = vi.fn();
 
 describe("useFetcher", () => {
@@ -9,7 +8,7 @@ describe("useFetcher", () => {
     vi.resetAllMocks();
   });
 
-  it("should fetch articles successfully", async () => {
+  test("フェッチが成功する場合、記事データを返すこと", async () => {
     const mockArticles: ArticleData[] = [
       {
         id: 1,
@@ -42,7 +41,7 @@ describe("useFetcher", () => {
     });
   });
 
-  it("should handle fetch error", async () => {
+  test("フェッチが失敗する場合、エラーメッセージを返すこと", async () => {
     const mockFetch = vi.mocked(fetch);
     mockFetch.mockRejectedValueOnce(new Error("Network error"));
 
@@ -50,7 +49,7 @@ describe("useFetcher", () => {
     expect(fetch).toHaveBeenCalledTimes(1);
   });
 
-  it("should handle empty response", async () => {
+  test("フェッチが空の配列を返す場合、空の記事リストを返すこと", async () => {
     const mockFetch = vi.mocked(fetch);
     mockFetch.mockResolvedValueOnce({
       ok: true,
@@ -64,7 +63,7 @@ describe("useFetcher", () => {
     });
   });
 
-  it("should handle invalid JSON response", async () => {
+  test("フェッチが無効なJSONレスポンスを返す場合、エラーメッセージを返すこと", async () => {
     const mockFetch = vi.mocked(fetch);
     mockFetch.mockResolvedValueOnce({
       ok: true,
@@ -74,31 +73,3 @@ describe("useFetcher", () => {
     await expect(useFetcher()).rejects.toThrow("Invalid JSON");
   });
 });
-
-// テスト設定が完了していない場合のマニュアルテスト関数
-export const manualTest = async () => {
-  console.log("🧪 useFetcher Manual Test");
-
-  try {
-    console.log("📝 Testing useFetcher...");
-    const result = await useFetcher();
-
-    console.log("✅ Success:", {
-      articlesCount: result.articles.length,
-      firstArticle: result.articles[0]
-        ? {
-            id: result.articles[0].id,
-            title: result.articles[0].title.substring(0, 50) + "...",
-          }
-        : null,
-    });
-
-    return true;
-  } catch (error) {
-    console.error("❌ Error:", error);
-    return false;
-  }
-};
-
-// マニュアルテストを実行（必要に応じてコメントアウト）
-// manualTest();
