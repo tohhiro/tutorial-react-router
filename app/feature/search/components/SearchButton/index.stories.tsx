@@ -1,15 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ClearButton } from "./index";
+import { SearchButton } from "./index";
 
 const meta = {
-  component: ClearButton,
+  component: SearchButton,
   parameters: {
     layout: "centered",
   },
-  args: {
-    onClick: () => {},
-  },
-} satisfies Meta<typeof ClearButton>;
+} satisfies Meta<typeof SearchButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -18,6 +15,6 @@ export const Default: Story = {};
 
 export const CustomLabel: Story = {
   args: {
-    label: "リセット",
+    label: "サーチ",
   },
 };
