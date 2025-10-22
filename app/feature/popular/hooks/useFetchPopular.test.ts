@@ -1,0 +1,75 @@
+import { useFetchPopular } from "./useFetchPopular";
+import { type ArticleData } from "../../types/fetch.type";
+
+global.fetch = vi.fn();
+
+describe("useFetchPopular", () => {
+  beforeEach(() => {
+    vi.resetAllMocks();
+  });
+
+  test("フェッチが成功する場合、記事データを返すこと", async () => {
+    const mockArticles: ArticleData[] = [
+      {
+        id: 2,
+        title: "Test Article 2",
+        body: "This is test article 2 content",
+        userId: 2,
+      },
+      {
+        id: 10,
+        title: "Test Article 10",
+        body: "This is test article 10 content",
+        userId: 10,
+      },
+    ];
+
+    const mockFetch = vi.mocked(fetch);
+    mockFetch.mockResolvedValueOnce({
+      ok: true,
+      json: vi.fn().mockResolvedValue(mockArticles),
+    } as unknown as Response);
+
+    const result = await useFetchPopular();
+
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(fetch).toHaveBeenCalledWith(
+      "https://jsonplaceholder.typicode.com/posts?id=2&id=10"
+    );
+    expect(result).toEqual({
+      articles: mockArticles,
+    });
+  });
+
+  test("フェッチが失敗する場合、エラーメッセージを返すこと", async () => {
+    const mockFetch = vi.mocked(fetch);
+    mockFetch.mockRejectedValueOnce(new Error("Network error"));
+
+    await expect(useFetchPopular()).rejects.toThrow("Network error");
+    expect(fetch).toHaveBeenCalledTimes(1);
+  });
+
+  test("フェッチが空の配列を返す場合、空の記事リストを返すこと", async () => {
+    const mockFetch = vi.mocked(fetch);
+    mockFetch.mockResolvedValueOnce({
+      ok: true,
+      json: vi.fn().mockResolvedValue([]),
+    } as unknown as Response);
+
+    const result = await useFetchPopular();
+
+    expect(result).toEqual({
+      articles: [],
+    });
+  });
+
+  test("フェッチが無効なJSONレスポンスを返す場合、エラーメッセージを返すこと", async () => {
+    const mockFetch = vi.mocked(fetch);
+    mockFetch.mockResolvedValueOnce({
+      ok: true,
+      json: vi.fn().mockRejectedValue(new Error("Invalid JSON")),
+    } as unknown as Response);
+
+    await expect(useFetchPopular()).rejects.toThrow("Invalid JSON");
+  });
+});
