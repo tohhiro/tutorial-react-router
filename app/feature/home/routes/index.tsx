@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router";
-import { useFetchLimit } from "../hooks/useFetcherLimit";
+import { useFetchLimit } from "../hooks/useFetchLimit";
 
 export async function loader() {
   return await useFetchLimit();
