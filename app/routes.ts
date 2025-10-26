@@ -11,6 +11,7 @@ export default [
     index("feature/home/routes/index.tsx"),
     route("popular", "feature/popular/routes/index.tsx"),
     route("search", "feature/search/routes/index.tsx"),
+    route("articles/:id", "feature/articles/routes/index.tsx"),
   ]),
   ...prefix("v1", [
     ...prefix("systems", [route("ping", "feature/ping/routes/index.tsx")]),
