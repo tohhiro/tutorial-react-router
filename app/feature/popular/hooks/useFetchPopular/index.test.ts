@@ -1,5 +1,5 @@
-import { useFetchPopular } from "./useFetchPopular";
-import { type ArticleData } from "../../types/fetch.type";
+import { useFetchPopular } from ".";
+import { type ArticleData } from "../../../types/fetch.type";
 
 global.fetch = vi.fn();
 

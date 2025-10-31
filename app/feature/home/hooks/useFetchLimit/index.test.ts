@@ -1,5 +1,5 @@
-import { useFetchLimit } from "./useFetchLimit";
-import { type ArticleData } from "../../types/fetch.type";
+import { useFetchLimit } from ".";
+import { type ArticleData } from "../../../types/fetch.type";
 
 global.fetch = vi.fn();
 

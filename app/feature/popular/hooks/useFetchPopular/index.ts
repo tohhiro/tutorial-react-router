@@ -1,4 +1,4 @@
-import { type ArticleData } from "../../types/fetch.type";
+import { type ArticleData } from "../../../types/fetch.type";
 
 export const useFetchPopular = async () => {
   const res = await fetch(
