@@ -1,5 +1,7 @@
 import type { Preview } from "@storybook/react-vite";
-import "../app/app.css"; // テスト用に一時的にコメントアウト
+import React from "react";
+import { BrowserRouter } from "react-router";
+import "../app/app.css";
 
 const preview: Preview = {
   parameters: {
@@ -17,6 +19,13 @@ const preview: Preview = {
       test: "todo",
     },
   },
+  decorators: [
+    (Story) => (
+      <BrowserRouter>
+        <Story />
+      </BrowserRouter>
+    ),
+  ],
 };
 
 export default preview;
