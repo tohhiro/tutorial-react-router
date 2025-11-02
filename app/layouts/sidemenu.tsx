@@ -25,7 +25,9 @@ export default function Sidemenu() {
           ))}
         </nav>
       </aside>
-      <Outlet />
+      <div className="sm:ml-56 p-4">
+        <Outlet />
+      </div>
     </div>
   );
 }

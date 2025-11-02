@@ -21,9 +21,8 @@ export function SearchPresenter({
   onClear,
 }: SearchPresenterProps) {
   return (
-    <div className="sm:ml-56 p-4">
+    <div>
       <h1 className="text-2xl font-bold mb-4">検索ページ</h1>
-
       {/* 検索フォーム */}
       <form onSubmit={onSearch} className="mb-6">
         <div className="flex gap-2">
