@@ -9,7 +9,7 @@ export default function Home() {
   const { articles } = useLoaderData<typeof loader>();
 
   return (
-    <div className="sm:ml-56 p-6">
+    <div>
       <h1 className="text-2xl font-bold mb-4">記事一覧</h1>
       <div className="space-y-2">
         {articles.map((article) => (
