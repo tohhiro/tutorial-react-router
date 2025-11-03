@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useFetcher } from "~/feature/search/hooks/useFetcher";
 import { type ArticleData } from "../../types/fetch.type";
 import { SearchPresenter } from "../components/SearchPage/index.presenter";
@@ -19,30 +19,36 @@ export default function SearchContainer() {
     setFilteredArticles(articles);
   }, [articles]);
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    const keyword = inputValue.trim().toLowerCase();
+  const handleSearch = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+      const keyword = inputValue.trim().toLowerCase();
 
-    if (keyword) {
-      const filtered = articles.filter(
-        (post: ArticleData) =>
-          post.title.toLowerCase().includes(keyword) ||
-          post.body.toLowerCase().includes(keyword)
-      );
-      setFilteredArticles(filtered);
-    } else {
-      setFilteredArticles(articles);
-    }
-  };
+      if (keyword) {
+        const filtered = articles.filter(
+          (post: ArticleData) =>
+            post.title.toLowerCase().includes(keyword) ||
+            post.body.toLowerCase().includes(keyword)
+        );
+        setFilteredArticles(filtered);
+      } else {
+        setFilteredArticles(articles);
+      }
+    },
+    [inputValue, articles]
+  );
 
-  const handleClear = () => {
+  const handleClear = useCallback(() => {
     setInputValue("");
     setFilteredArticles(articles);
-  };
+  }, [setInputValue, setFilteredArticles, articles]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-  };
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setInputValue(e.target.value);
+    },
+    [setInputValue]
+  );
 
   return (
     <SearchPresenter
