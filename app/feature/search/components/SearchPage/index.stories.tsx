@@ -30,14 +30,6 @@ const meta = {
   parameters: {
     layout: "fullscreen",
   },
-  tags: ["autodocs"],
-} satisfies Meta<typeof SearchPresenter>;
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-// デフォルトストーリー
-export const Default: Story = {
   args: {
     articles: mockArticles,
     inputValue: "",
@@ -46,31 +38,30 @@ export const Default: Story = {
     onSearch: () => {},
     onClear: () => {},
   },
-};
+  tags: ["autodocs"],
+} satisfies Meta<typeof SearchPresenter>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+// デフォルトストーリー
+export const Default: Story = {};
 
 // 検索中の状態
 export const WithSearchKeyword: Story = {
   args: {
-    articles: mockArticles,
     inputValue: "React",
     filteredArticles: mockArticles.filter((article) =>
       article.title.toLowerCase().includes("react")
     ),
-    onInputChange: () => {},
-    onSearch: () => {},
-    onClear: () => {},
   },
 };
 
 // 検索結果が0件の状態
 export const NoResults: Story = {
   args: {
-    articles: mockArticles,
     inputValue: "存在しないキーワード",
     filteredArticles: [],
-    onInputChange: () => {},
-    onSearch: () => {},
-    onClear: () => {},
   },
 };
 
@@ -80,8 +71,5 @@ export const EmptyState: Story = {
     articles: [],
     inputValue: "",
     filteredArticles: [],
-    onInputChange: () => {},
-    onSearch: () => {},
-    onClear: () => {},
   },
 };
