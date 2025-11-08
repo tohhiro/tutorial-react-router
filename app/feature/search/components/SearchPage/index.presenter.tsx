@@ -13,13 +13,13 @@ interface SearchPresenterProps {
   onClear: () => void;
 }
 
-export function SearchPresenter({
+export const SearchPresenter = ({
   inputValue,
   filteredArticles,
   onInputChange,
   onSearch,
   onClear,
-}: SearchPresenterProps) {
+}: SearchPresenterProps) => {
   return (
     <div>
       <h1 className="text-2xl font-bold mb-4">検索ページ</h1>
@@ -67,4 +67,4 @@ export function SearchPresenter({
       )}
     </div>
   );
-}
+};

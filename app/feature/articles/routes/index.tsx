@@ -12,7 +12,7 @@ export default function ArticleDetail() {
   const { article } = useLoaderData<typeof loader>();
 
   return (
-    <div className="sm:ml-56 p-6">
+    <div>
       <div className="mb-4">
         <Link to="/" className="text-blue-500 hover:text-blue-700 underline">
           ← 記事一覧に戻る
