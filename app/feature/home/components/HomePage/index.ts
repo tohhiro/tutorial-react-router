@@ -1,0 +1,1 @@
+export { HomePresenter } from "./index.presenter";
